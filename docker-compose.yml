@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  nest-app:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    depends_on:
+      - mysql-container
+    ports:
+      - 3005:3005
+    networks:
+      - common-network
+  mysql-container:
+    image: mysql
+    volumes:
+      - /Users/zhongjingbo/mysql:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: post_forge_system
+      MYSQL_ROOT_PASSWORD: zhongjingbo
+    networks:
+      - common-network
+  minio-container:
+    image: bitnami/minio:latest
+    ports:
+      - 9000:9000
+      - 9001:9001
+    volumes:
+      - /Users/zhongjingbo/minio:/bitnami/minio/data
+    environment:
+      MINIO_ROOT_USER: zhong
+      MINIO_ROOT_PASSWORD: zx990927
+    networks:
+      - common-network
+networks:
+  common-network:
+    driver: bridge
