@@ -33,6 +33,8 @@ services:
       MYSQL_ROOT_PASSWORD: zhongjingbo
     networks:
       - common-network
+    ports:
+      - "3306:3306"
   minio-container:
     image: bitnami/minio:latest
     ports:
