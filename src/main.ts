@@ -18,7 +18,17 @@ async function bootstrap() {
   app.useGlobalFilters(new CustomExceptionFilter())
   // 启用 CORS
   app.enableCors({
-    origin: ['http://localhost:5173'], // 允许的前端域名
+    origin: [
+      'http://localhost:5173',
+      'http://dashpost.zhongzhong.top',
+      'https://dashpost.zhongzhong.top',
+      'http://www.dashpost.zhongzhong.top',
+      'https://www.dashpost.zhongzhong.top',
+      'http://www.zhongzhong.top',
+      'https://www.zhongzhong.top',
+      'http://www.zhongzhong.top',
+      'https://www.zhongzhong.top',      
+    ],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true, // 允许发送认证信息（cookies）
   });

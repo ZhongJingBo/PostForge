@@ -14,6 +14,7 @@ import { UpdatePostDto } from './dto/update-post.dto';
 import { SetMetadata } from '@nestjs/common';
 import { Request } from 'express';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { UpdatePostStatusDto } from './dto/update-post-status.dto';
 
 @Controller('post')
 export class PostController {
@@ -105,7 +106,10 @@ export class PostController {
   @Post('updateStatus/:id')
   @SetMetadata('require-login', true)
   @SetMetadata('require-permission', ['ADMIN'])
-  async updateStatus(@Param('id') id: string, @Body() updatePostDto: UpdatePostDto) {
-    return this.postService.updateStatus(id, updatePostDto);
+  async updateStatus(
+    @Param('id') id: string,
+    @Body() updatePostStatusDto: UpdatePostStatusDto
+  ) {
+    return this.postService.updateStatus(id, updatePostStatusDto);
   }
 }

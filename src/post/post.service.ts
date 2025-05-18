@@ -4,6 +4,7 @@ import { UpdatePostDto } from './dto/update-post.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Post, PostStatus } from './entities/post.entity';
+import { UpdatePostStatusDto } from './dto/update-post-status.dto';
 
 @Injectable()
 export class PostService {
@@ -93,7 +94,9 @@ export class PostService {
   }
 
   // 更改PostStatus 状态
-  async updateStatus(id: string, updatePostDto: UpdatePostDto) {
-    return await this.postRepository.update(id, updatePostDto);
+  async updateStatus(id: string, updatePostStatusDto: UpdatePostStatusDto) {
+    return await this.postRepository.update(id, updatePostStatusDto);
   }
+
+  
 }
